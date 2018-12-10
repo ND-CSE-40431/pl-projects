@@ -1,0 +1,26 @@
+(\x:Bool. 0) true
+(\x:Bool. x) true
+(\x:Bool. y) true
+(\x:Nat. \y:Nat. x) 0 (succ 0)
+(\x:Nat. \y:Nat. y) 0 (succ 0)
+(\x:Nat. \x:Nat. x) 0 (succ 0)
+(\x:Nat. \y:Nat. z) 0 (succ 0)
+(\x:Nat. \y:Nat. x) (succ y) 0
+(\x:Nat. \y:Nat. x) 0 true
+(\x:Nat. \y:Nat. x) true 0
+(\x:Nat. (\y:Bool->Nat. succ x) (\z:Bool. succ x)) 0
+(\x:Nat. succ x) ((\y:Nat. succ y) 0)
+(\x:Nat->Bool. \y:Nat->Nat. \z:Nat->Nat. x (y (z 0))) (\z. iszero z) (\z. pred z) (\z. succ z)
+let
+(let k = 0 in \x:Nat. k) (succ 0)
+(\x:Nat. succ x) (pred 0)
+let f = \x:Nat. succ (succ x) in f (f 0)
+(\x:Bool. let x = 0 in true) false
+let y = (\x. x) 0 in x
+fix
+fix (\f:Nat->Nat. \x:Nat. if iszero x then 0 else succ (succ (f (pred x)))) (succ (succ (succ 0)))
+let + = fix (\+:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then y else succ (+ (pred x) y)) in let * = fix (\*:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then 0 else + y (* (pred x) y)) in let factorial = fix (\f:Nat->Nat. \x:Nat. if iszero x then succ 0 else * x (f (pred x))) in factorial 0
+let + = fix (\+:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then y else succ (+ (pred x) y)) in let * = fix (\*:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then 0 else + y (* (pred x) y)) in let factorial = fix (\f:Nat->Nat. \x:Nat. if iszero x then succ 0 else * x (f (pred x))) in factorial (succ 0)
+let + = fix (\+:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then y else succ (+ (pred x) y)) in let * = fix (\*:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then 0 else + y (* (pred x) y)) in let factorial = fix (\f:Nat->Nat. \x:Nat. if iszero x then succ 0 else * x (f (pred x))) in factorial (succ (succ 0))
+let + = fix (\+:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then y else succ (+ (pred x) y)) in let * = fix (\*:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then 0 else + y (* (pred x) y)) in let factorial = fix (\f:Nat->Nat. \x:Nat. if iszero x then succ 0 else * x (f (pred x))) in factorial (succ (succ (succ 0)))
+let + = fix (\+:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then y else succ (+ (pred x) y)) in let * = fix (\*:Nat->Nat->Nat. \x:Nat. \y:Nat. if iszero x then 0 else + y (* (pred x) y)) in let factorial = fix (\f:Nat->Nat. \x:Nat. if iszero x then succ 0 else * x (f (pred x))) in factorial (succ (succ (succ (succ 0))))

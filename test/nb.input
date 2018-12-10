@@ -1,0 +1,38 @@
+true
+false
+if true then succ 0 else 0
+if false then succ 0 else 0
+if true then 0 else true
+if false then 0 else true
+if if true then true else false then true else false
+if if false then true else false then true else false
+if true then pred (succ (succ 0)) else pred (succ 0)
+if false then pred (succ (succ 0)) else pred (succ 0)
+0
+succ 0
+pred 0
+succ (succ 0)
+pred (succ 0)
+succ (pred 0)
+pred (pred 0)
+succ (succ (succ 0))
+pred (succ (succ 0))
+succ (pred (succ 0))
+pred (pred (succ 0))
+succ (succ (pred 0))
+succ (pred (pred 0))
+pred (succ (pred 0))
+pred (pred (pred 0))
+iszero 0
+iszero (succ 0)
+iszero (succ (succ 0))
+iszero (pred (succ 0))
+iszero (pred (succ (succ 0)))
+succ
+pred
+iszero
+succ true
+pred true
+iszero true
+if 0 then succ 0 else 0
+succ 1
