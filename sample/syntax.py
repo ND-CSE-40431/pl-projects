@@ -178,12 +178,14 @@ def format_atom(t):
     if isinstance(t, list):
         if t[0] == "var":
             return t[1]
-        else:
+        elif t[0] in ["if", "let", "lambda", "typedlambda",
+                      "succ", "pred", "iszero", "fix", "app"]:
             return "({})".format(format_abs(t))
     elif t == "zero":
         return "0"
     elif t in ["true", "false"]:
         return t
+    raise ValueError("don't know how to format {}".format(t))
 
 format_term = format_abs
 
@@ -196,10 +198,11 @@ def format_base(tau):
     if isinstance(tau, list):
         if tau[0] == "typevar":
             return tau[1]
-        else:
+        elif tau[0] == "arrow":
             return "({})".format(format_arrow(tau))
-    else:
+    elif tau in ["Nat", "Bool"]:
         return tau
+    raise ValueError("don't know how to format {}".format(tau))
 
 format_type = format_arrow
 

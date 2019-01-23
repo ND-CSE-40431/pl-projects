@@ -179,11 +179,13 @@
   (if (pair? t)
       (case (car t)
         ((var) (second t))
-        (else (string-append "(" (format-abs t) ")")))
+        ((if let lambda typed-lambda succ pred iszero fix app)
+         (string-append "(" (format-abs t) ")"))
+        (else (raise "invalid term")))
       (case t
         ((zero) "0")
         ((true false) (symbol->string t))
-        (else (raise "aieee")))))
+        (else (raise "invalid term")))))
 
 (define format-term format-abs)
 
@@ -196,7 +198,8 @@
   (if (pair? tau)
       (case (first tau)
         ((typevar) (second tau))
-        (else (string-append "(" (format-arrow tau) ")")))
+        ((arrow) (string-append "(" (format-arrow tau) ")"))
+        (else (raise "invalid type")))
       (case tau
         ((Nat) "Nat")
         ((Bool) "Bool")
