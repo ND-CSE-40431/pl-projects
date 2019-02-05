@@ -8,6 +8,8 @@ if if true then true else false then true else false
 if if false then true else false then true else false
 if true then pred (succ (succ 0)) else pred (succ 0)
 if false then pred (succ (succ 0)) else pred (succ 0)
+if true then 0 else succ true
+if false then succ true else 0
 0
 succ 0
 pred 0
