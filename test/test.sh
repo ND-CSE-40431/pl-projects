@@ -39,7 +39,7 @@ for TEST in $TESTS; do
     fi
 done
 
-if [ $PASS ]; then
+if [ "$PASS" = 1 ]; then
     echo "All tests passed!"
 else
     echo "Some tests failed."
