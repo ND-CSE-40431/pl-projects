@@ -1,5 +1,7 @@
 (* Example of a REPL that does nothing *)
 
+(* To compile: ocamlopt unix.cmxa syntax.ml id.ml -o id *)
+
 open Syntax
 
 let () = read_lines "id> " (fun line -> 

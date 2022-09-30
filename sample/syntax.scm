@@ -1,4 +1,4 @@
-(use-modules (srfi srfi-1) (srfi srfi-34) (srfi srfi-111) (ice-9 rdelim))
+(load "lists.scm")
 
 ;;; Constants
 
@@ -209,15 +209,10 @@
 
 ;;; Simple read-eval-print loop
 
-;; Bug: Not sure if this works under Windows
-(use-modules (ice-9 readline))
-    
 (define (read-lines prompt f)
-  (let ((line (if (isatty? (current-input-port))
-                  (readline prompt)
-                  (read-line))))
+  (let ((line (get-line (current-input-port))))
         (if (not (eof-object? line))
             (begin
               (f line)
               (read-lines prompt f))
-            (if (isatty? (current-input-port)) (display "\n")))))
+            (newline))))
