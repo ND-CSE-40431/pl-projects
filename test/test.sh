@@ -22,7 +22,7 @@ PASS=1
 
 for TEST in $TESTS; do
 
-    for FILE in test/diff.py solution/$TEST.$OS submit/$1 ; do
+    for FILE in test/diff.py solution/$1.$OS submit/$1 ; do
         if [ ! -x $FILE ]; then
 	    echo "error: $FILE missing or not executable"
 	    exit 1
