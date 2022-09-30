@@ -34,7 +34,7 @@ for TEST in $TESTS; do
         exit 1
     fi
     
-    if ! test/diff.py test/$TEST.input <(solution/$TEST.$OS <test/$TEST.input) <(submit/$1 <test/$TEST.input); then
+    if ! test/diff.py test/$TEST.input <(solution/$1.$OS <test/$TEST.input) <(submit/$1 <test/$TEST.input); then
         PASS=0
     fi
 done
