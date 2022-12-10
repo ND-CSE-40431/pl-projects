@@ -24,10 +24,11 @@ reserved_words = ["0", "succ", "pred", "iszero",
                   "fix",
                   "inl", "inr", "as", "case", "of",
                   "fold", "unfold",
+                  "try", "with",
                   ]
 
 # tokens that end a chain of applications
-terminators = [")", "then", "else", "in", "as", ",", "}", "of", "=>", "|"]
+terminators = [")", "then", "else", "in", "as", 'with', ",", "}", "of", "=>", "|"]
 
 ### Lexer
 
@@ -121,6 +122,12 @@ def parse_abs(w):
         expect('=>', w)
         tr = parse_abs(w)
         return ['case', t0, xl, tl, xr, tr]
+    elif w[0] == 'try':
+        expect('try', w)
+        tt = parse_abs(w)
+        expect('with', w)
+        th = parse_abs(w)
+        return ['try', tt, th]
     else:
         return parse_app(w)
 
@@ -271,6 +278,8 @@ def format_abs(t):
             return "<closure>"
         elif t[0] == 'case':
             return f'case {format_abs(t[1])} of inl {t[2]} => {format_abs(t[3])} | inr {t[4]} => {format_abs(t[5])}'
+        elif t[0] == 'try':
+            return f'try {format_abs(t[1])} with {format_abs(t[2])}'
     return format_app(t)
 
 def format_app(t):
@@ -370,4 +379,3 @@ if __name__ == "__main__":
         t = parse_term(line)
         print(t)
         print(format_term(t))
-        
